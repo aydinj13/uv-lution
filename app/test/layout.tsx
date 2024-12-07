@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "UV Lution | Home",
+  title: "UV Lution | Testing",
 };
 
 export default function RootLayout({

@@ -1,25 +1,37 @@
+"use client"
 
-import Link from "next/link";
-import { Button } from "./ui/button";
-
+import Link from 'next/link';
+import { useState } from 'react';
 
 function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const NavLinks = [
+    { href: "/background", label: "Background" },
+    { href: "/problem", label: "Problem" },
+    { href: "/solution", label: "Solution" },
+    { href: "/test", label: "Testing" },
+    { href: "/future", label: "Future" },
+  ];
 
   return (
-    <header
-  className="sticky right-0 top-0 h-14 w-full transition-[top] duration-500 ease-in-expo z-40 bg-background md:h-16"
-  style={{ top: 0 }}
->
-  <div className="flex h-full w-full">
-    <div className="mx-auto flex h-full w-full max-w-[84rem] items-center justify-between gap-8 px-6 sm:px-8">
-      <Link className="flex flex-shrink-0 items-center gap-4" href="/#hero">
-      <svg
+    <header 
+      className="sticky right-0 top-0 h-14 w-full transition-[top] duration-500 ease-in-expo z-40 bg-white lg:opacity-95 md:h-16"
+    >
+      <div className="flex h-full w-full">
+        <div className="mx-auto flex h-full w-full max-w-[84rem] items-center justify-between gap-8 px-6 sm:px-8">
+          <Link className="flex flex-shrink-0 items-center gap-4" href="/#hero">
+          <svg
   version="1.0"
   id="Layer_1"
   xmlns="http://www.w3.org/2000/svg"
   xmlnsXlink="http://www.w3.org/1999/xlink"
-  width="30px"
-  height="30px"
+  width="20px"
+  height="20px"
   viewBox="0 0 64 64"
   enableBackground="new 0 0 64 64"
   xmlSpace="preserve"
@@ -50,116 +62,69 @@ function Navbar() {
     </g>
   </g>
 </svg>
-
-        <span className="font-bold text-md">UV Lution</span>
-      </Link>
-      <nav className="ml-auto hidden items-center space-x-6 md:flex lg:space-x-8">
-        <Link
-          className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
-          href="/background"
-        >
-          Background
-        </Link>
-        <Link
-          className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
-          href="/problem"
-        >
-          Problem
-        </Link>
-        <Link
-          className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
-          href="/solution"
-        >
-          Solution
-        </Link>
-        <Link
-          className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
-          href="/media"
-        >
-          Media
-        </Link>
-        <Link
-          className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
-          href="/future"
-        >
-          Future
-        </Link>
-        <Button asChild>
-        <Link href="/team">
-          Meet the Team
-        </Link>
-        </Button>
-      </nav>
-      <div className="md:hidden">
-        <button>
-          <span className="sr-only">open menu</span>
-          <svg width={22} height={20} viewBox="0 0 22 20">
-            <path
-              fill="transparent"
-              strokeWidth={2}
-              className="stroke-primary"
-              strokeLinecap="round"
-              d="M 2 4 L 20 4"
-            />
-            <path
-              fill="transparent"
-              strokeWidth={2}
-              className="stroke-primary"
-              strokeLinecap="round"
-              d="M 8 10 L 20 10"
-              opacity={1}
-            />
-            <path
-              fill="transparent"
-              strokeWidth={2}
-              className="stroke-primary"
-              strokeLinecap="round"
-              d="M 6 16 L 20 16"
-            />
-          </svg>
-        </button>
-      </div>
-      <div className="pointer-events-none fixed left-0 top-14 z-10 -mt-1 flex h-[calc(100vh-3.25rem)] w-full flex-col gap-7 overflow-auto md:hidden">
-        <div className="absolute inset-0 bg-black/80 opacity-0 transition-opacity duration-500 ease-in-expo" />
-        <div className="flex w-full -translate-y-full flex-col gap-7 rounded-b-md bg-background px-6 pb-6 pt-2 transition-transform duration-500 ease-in-expo sm:px-8">
-          <nav className="flex flex-col items-start">
-            <Link
-              className="w-full border-t py-3 first-of-type:border-none"
-              href="/Background"
+            <span className="font-bold text-md">UV Lution</span>
+          </Link>
+          
+          {/* Desktop Navigation */}
+          <nav className="ml-auto hidden items-center space-x-6 md:flex lg:space-x-8">
+            {NavLinks.map((link) => (
+              <a 
+                key={link.href} 
+                className="text-sm font-medium transition-colors hover:text-yellow-600 text-gray-600" 
+                href={link.href}
+              >
+                {link.label}
+              </a>
+            ))}
+            <a 
+              href="/team" 
+              className="px-4 py-2 bg-yellow-500 text-black rounded-md hover:bg-yellow-600 text-sm font-medium"
             >
-              Background
-            </Link>
-            <Link
-              className="w-full border-t py-3 first-of-type:border-none"
-              href="/Problem"
-            >
-              Problem
-            </Link>
-            <Link
-              className="w-full border-t py-3 first-of-type:border-none"
-              href="/#faq"
-            >
-              FAQ
-            </Link>
-            <Link
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 mt-2 w-full"
-              href="/#contact"
-            >
-              Contact
-            </Link>
-            <Link
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 mt-3 w-full"
-              href="/auth/login"
-            >
-              Get started
-            </Link>
+              Meet the Team
+            </a>
           </nav>
+
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden">
+            <button 
+              onClick={toggleMobileMenu} 
+              className="text-gray-800 hover:text-yellow-600"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMobileMenuOpen ? '✕' : '☰'}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</header>
 
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 top-14 bg-white/90 backdrop-blur-sm md:hidden"
+          onClick={toggleMobileMenu}
+        >
+          <nav className="flex flex-col items-center space-y-6 pt-8">
+            {NavLinks.map((link) => (
+              <a 
+                key={link.href} 
+                href={link.href} 
+                className="text-lg font-medium text-gray-600 hover:text-yellow-600"
+                onClick={toggleMobileMenu}
+              >
+                {link.label}
+              </a>
+            ))}
+            <a 
+              href="/team"
+              className="mt-4 px-6 py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 text-lg font-medium"
+              onClick={toggleMobileMenu}
+            >
+              Meet the Team
+            </a>
+          </nav>
+        </div>
+      )}
+    </header>
   );
 }
 

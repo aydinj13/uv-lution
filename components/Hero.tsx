@@ -1,8 +1,9 @@
+import Image from "next/image"
 import { Button } from "./ui/button"
+import Link from "next/link"
 
 function Hero() {
   return (
-<main className="flex-1 overflow-hidden p-2 lg:p-5 bg-gradient-to-bl from-yellow-400 to-yellow-600 w-screen">
 
          <div className="bg-white dark:bg-black py-24 sm:py-32 rounded-md drop-shadow-xl">
     <section
@@ -34,7 +35,7 @@ function Hero() {
     </a>
   </div>
   <h1 className="lg:leading-tighter max-w-4xl animate-gradient text-pretty bg-gradient-to-r from-primary via-muted-foreground via-20% to-primary bg-[length:200%_auto] bg-clip-text text-center text-5xl font-bold tracking-tighter text-transparent sm:text-6xl md:text-7xl lg:text-8xl">
-  <div>UV and Desalination</div>
+  <div>UV and Desalination.</div>
   <div className="flex items-baseline justify-center gap-3 sm:gap-4 md:gap-5">
     Made <span className="text-black">Simple.</span>
   </div>
@@ -45,8 +46,10 @@ function Hero() {
   </p>
   <div className="mt-2 flex flex-col items-center gap-2 sm:mt-4">
     <div className="flex gap-4 md:gap-5">
-      <Button size="lg" className="lg:text-lg">
+      <Button size="lg" className="lg:text-lg" asChild>
+      <Link href="/solution">
         View our Solution
+        </Link>
       </Button>
     </div>
     <p
@@ -86,9 +89,24 @@ function Hero() {
     className="relative left-[calc(50%-14rem)] aspect-[1155/678] w-[50rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#e8c56b] to-[#f3b702] opacity-50 sm:left-[calc(50%-35rem)] sm:w-[80rem]"
   />
 </div>
+<div className="relative overflow-hidden pt-16">
+            <div className="mx-auto max-w-2xl px-6 lg:px-8">
+              <Image 
+              alt="Prototype"
+              src="/prototype.jpeg"
+              width={1000}
+              height={1000}
+              className="mb-[-0%] rounded-xl shadow-2xl ring-1 ring-gray-900/10"
+            />
+            <div aria-hidden="true" className="relative">
+              <div className="absolute bottom-0 -inset-x-32 bg-gradient-to-t from-white/95 pt-[5%] dark:-inset-x-0" />
+            </div>
+            </div>
+          </div>
 </section>
+
 </div>
-</main>
+
   )
 }
 export default Hero
